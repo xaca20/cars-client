@@ -1,13 +1,13 @@
 import {Route, Routes} from 'react-router';
 import RootLayout from './layouts/RootLayout';
-import HomePage from '.pages/HomePage';
-import CarsPage from '.pages/CarsPage';
-import CarDetailsPage from '.pages/CarDetailsPage';
-import CreateCarPage from '.pages/CreateCarPage';
-import EditCarPage from '.pages/EditCarPage';
-import NotFoundPage from '.pages/NotFoundPage';
+import HomePage from './pages/HomePage';
+import CarsPage from './pages/CarsPage';
+import CarDetailsPage from './pages/CarDetailsPage';
+import CreateCarPage from './pages/CreateCarPage';
+import EditCarPage from './pages/EditCarPage';
+import NotFoundPage from './pages/NotFoundPage';
 
-export deafult function App(){
+export default function App(){
     return (
         <Routes>
             <Route element={<RootLayout />}>

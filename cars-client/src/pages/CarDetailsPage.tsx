@@ -1,0 +1,1 @@
+export default function CarDetailsPage() { return <div>Home</div>; }

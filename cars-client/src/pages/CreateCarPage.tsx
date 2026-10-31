@@ -1,0 +1,1 @@
+export default function CreateCarPage() { return <div>Home</div>; }
