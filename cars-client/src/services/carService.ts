@@ -22,7 +22,7 @@ export async function getCarById(
     id: string,
     signal?: AbortSignal
 ): Promise<Car> {
-    const response = await fetch('${carsUrl}/${id}', { signal });
+    const response = await fetch(`${carsUrl}/${id}`, { signal });
     await ensureSuccess(response);
     return await response.json();
 }
@@ -44,10 +44,10 @@ export async function updateCar(
     id: string,
     car: NewCar
 ): Promise<Car> {
-    const response = await fetch('${carsUrl}/${id}', {
-        method: 'PUT',
-        headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify(car)
+    const response = await fetch(`${carsUrl}/${id}`, {
+    method: 'PUT',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(car)
     });
 
     await ensureSuccess(response);
@@ -57,7 +57,7 @@ export async function updateCar(
 export async function deleteCar(
     id: string
 ): Promise<void> {
-    const response = await fetch('${carsUrl}/${id}',{method: 'DELETE'}
+    const response = await fetch(`${carsUrl}/${id}`, { method: 'DELETE' }
     );
 
     await ensureSuccess(response);
