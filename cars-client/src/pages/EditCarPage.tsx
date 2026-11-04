@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router';
+import axios from 'axios';
 import type { NewCar } from '../models/Car';
 import { getCarById, updateCar } from '../services/carService';
 
@@ -12,19 +13,39 @@ export default function EditCarPage() {
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
+    const controller = new AbortController();
+
     async function loadCar() {
       if (!id) return;
       try {
-        const data = await getCarById(id);
+        setLoading(true);
+        setError(null);
+
+        const data = await getCarById(id, controller.signal);
         const { id: _removedId, ...carDataToEdit } = data;
         setFormData(carDataToEdit);
-      } catch (err) {
-        setError('Nie udało się pobrać danych samochodu do edycji.');
+      } catch (caughtError) {
+        if (axios.isCancel(caughtError)) {
+          return;
+        }
+
+        if (caughtError instanceof Error) {
+          setError(caughtError.message);
+        } else {
+          setError('Wystapil nieznany blad.');
+        }
       } finally {
-        setLoading(false);
+        if (!controller.signal.aborted) {
+          setLoading(false);
+        }
       }
     }
+
     loadCar();
+
+    return () => {
+      controller.abort();
+    };
   }, [id]);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {

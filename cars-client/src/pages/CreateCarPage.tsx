@@ -33,7 +33,11 @@ export default function CreateCarPage() {
       await createCar(formData);
       navigate('/cars');
     } catch (error) {
-      alert('Wystąpił błąd podczas dodawania samochodu.');
+      if (error instanceof Error) {
+        alert(error.message);
+      } else {
+        alert('Wystąpił błąd podczas dodawania samochodu.');
+      }
     }
   };
 
