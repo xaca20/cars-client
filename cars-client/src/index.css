@@ -131,6 +131,9 @@ a:hover {
 .favorite-counter {
   margin-left: auto;
   padding: 8px 12px;
+  background-color: #d97706;
   color: white;
   font-weight: 600;
+  border-radius: 6px;
+  box-shadow: none;
 }
