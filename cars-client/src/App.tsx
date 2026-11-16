@@ -10,6 +10,7 @@ import LoginPage from './pages/LoginPage';
 import ConfirmEmailPage from './pages/ConfirmEmailPage';
 import ResetPasswordPage from './pages/ResetPasswordPage';
 import ProtectedRoute from './components/ProtectedRoute';
+import ForgotPasswordPage from './pages/ForgotPasswordPage';
 
 export default function App(){
     return (
@@ -30,6 +31,9 @@ export default function App(){
                 <Route
                 path="reset-password"
                 element={<ResetPasswordPage />}
+                />
+                <Route path="forgot-password"
+                element={<ForgotPasswordPage />} 
                 />
                 <Route element={<ProtectedRoute />}>
                     <Route path="cars">
